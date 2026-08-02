@@ -81,11 +81,11 @@ def google_callback(
             key="syllaba_session",
             value=str(user.id),
             httponly=True,
-            secure=False,
-            samesite="lax",
+            secure=True,
+            samesite="none",
             max_age=60 * 60 * 24 * 7 # = 7 days validity
         )
-        
+
         return response
     except Exception as e:
         db.rollback()
