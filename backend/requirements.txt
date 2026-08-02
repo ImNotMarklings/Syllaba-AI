@@ -8,3 +8,5 @@ slowapi==0.1.10
 SQLAlchemy==2.0.51
 uvicorn[standard]
 gunicorn
+google-genai
+google-generativeai
