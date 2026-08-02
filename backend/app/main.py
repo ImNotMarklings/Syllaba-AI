@@ -34,10 +34,16 @@ app.include_router(classroom.router)
 app.include_router(ai.router)
 app.include_router(chat.router)
 
+origins = [
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+    "https://syllaba-api.onrender.com"
+]
+
 # Enable CORS (Cross-Origin Resource Sharing)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"]
