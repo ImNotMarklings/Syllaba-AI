@@ -74,7 +74,7 @@ def google_callback(
         db.refresh(user)
 
         # 3. Redirect directly to the App page
-        response = RedirectResponse(url=f"{FRONTEND_URL}/app/chat")
+        response = RedirectResponse(url=f"{FRONTEND_URL}/app/chat?token={user.id}")
 
         # 4. Set HttpOnly Cookie
         response.set_cookie(
@@ -92,12 +92,21 @@ def google_callback(
         raise HTTPException(status_code=400, detail=f"Authentication failed: {str(e)}")
 
 @router.get("/me")
-def get_current_user(request: Request, db: Session = Depends(get_db)):
+def get_current_user(request: Request, token: str = Query(None), db: Session = Depends(get_db)):
     """
     Fetches the profile of the currently logged-in user
     using the HttpOnly session cookie.
     """
     user_id = request.cookies.get("syllaba_session")
+
+    if not user_id:
+        auth_header = request.headers.get("Authorization")
+        if auth_header and auth_header.startsWith("Bearer "):
+            user_id = auth_header.split(" ")[1]
+
+    if not user_id:
+        user_id = token
+
     if not user_id:
         raise HTTPException(status_code=401, detail="Not authenticated")
 
