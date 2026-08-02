@@ -32,7 +32,7 @@ class GoogleService:
             }
         }
 
-        redirect_uri = os.getenv("REDIRECT_URI", "http://localhost:8000/auth/callback")
+        redirect_uri = os.getenv("REDIRECT_URI", "https://syllaba-api.onrender.com/auth/callback")
 
         flow = Flow.from_client_config(
             client_config,
