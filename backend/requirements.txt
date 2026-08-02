@@ -5,6 +5,7 @@ pydantic
 python-dotenv
 slowapi
 SQLAlchemy
+psycopg2-binary
 google-genai
 google-api-python-client
 google-auth-oauthlib
