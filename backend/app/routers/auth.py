@@ -9,7 +9,7 @@ from app.services.google_service import GoogleService
 
 router = APIRouter(prefix="/auth", tags=["Authentication"])
 
-FRONTEND_URL = os.getenv("FRONTEND_URL", "http://localhost:3000")
+FRONTEND_URL = os.getenv("FRONTEND_URL", "https://syllaba-ai.vercel.app")
 
 @router.get("/login")
 def google_login():
