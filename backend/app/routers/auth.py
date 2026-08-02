@@ -101,7 +101,7 @@ def get_current_user(request: Request, token: str = Query(None), db: Session = D
 
     if not user_id:
         auth_header = request.headers.get("Authorization")
-        if auth_header and auth_header.startsWith("Bearer "):
+        if auth_header and auth_header.startswith("Bearer "):
             user_id = auth_header.split(" ")[1]
 
     if not user_id:
