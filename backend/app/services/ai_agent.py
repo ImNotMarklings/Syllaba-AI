@@ -52,7 +52,7 @@ class AIAgentService:
                 logger.error(f"Unexpected error on model {model_name}: {str(e)}")
                 last_exception = e
 
-        logger.critical(f"Unexpected error on model {model_name}: {str(e)}")
+        logger.critical(f"Unexpected error on model {model_name}: {str(last_exception)}")
         raise RuntimeError(f"All Gemini models failed. Last error: {str(last_exception)}")
 
     @classmethod
@@ -191,7 +191,7 @@ class AIAgentService:
                     try:
                         tool_result = tools_map[func_name](**func_args)
                     except Exception as e:
-                        logger.error(f"Error executing tool {func_name}: {err}")
+                        logger.error(f"Error executing tool {func_name}: {e}")
                         tool_result = {"error": f"Failed to fetch data: {str(e)}"}
 
                     function_responses.append(

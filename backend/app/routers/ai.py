@@ -190,7 +190,7 @@ def chat_with_agent_stream(
                 config=types.GenerateContentConfig(response_mime_type="application/json")
             )
             ai_steps = json.loads(planner_res.text)
-        except Exception:
+        except Exception as e:
             logger.warning(f"Checklist planner failed, using fallback steps: {e}")
             ai_steps = ["Analyzing intent", "Querying Google Classroom", "Preparing response"]
 
