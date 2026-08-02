@@ -11,6 +11,7 @@ from slowapi import _rate_limit_exceeded_handler
 from slowapi.errors import RateLimitExceeded
 
 from app.limiter import limiter
+from uvicorn.middleware.proxy_headers import ProxyHeadersMiddleware
 
 # Load .env
 load_dotenv()
@@ -19,7 +20,7 @@ load_dotenv()
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI(
-    title="Google Classroom AI Agent App",
+    title="Syllaba AI",
     description="Backend for Google Classroom integration and AI study helper",
     version="1.0.0"
 )
@@ -41,6 +42,8 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"]
 )
+
+app.add_middleware(ProxyHeadersMiddleware, trusted_hosts=["*"])
 
 # Initialize Gemini Client
 api_key = os.getenv("GEMINI_API_KEY")
