@@ -37,7 +37,8 @@ app.include_router(chat.router)
 origins = [
     "http://localhost:3000",
     "http://127.0.0.1:3000",
-    "https://syllaba-api.onrender.com"
+    "https://syllaba-api.onrender.com",
+    "https://syllaba-ai.vercel.app"
 ]
 
 # Enable CORS (Cross-Origin Resource Sharing)
